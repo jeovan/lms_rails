@@ -11,6 +11,10 @@
 # end
 
 # These inflection rules are supported but not enabled by default:
-# ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.acronym 'RESTful'
-# end
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.plural 'usuario', 'usuarios'
+  inflect.plural 'pessoa', 'pessoas'
+  inflect.plural 'perfil', 'perfis'
+  inflect.plural 'permissao', 'permissoes'
+  inflect.plural 'perfil_permissao', 'perfis_permissoes'
+end
