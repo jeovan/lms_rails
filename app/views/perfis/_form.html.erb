@@ -1,27 +1,56 @@
-<%= form_with(model: perfi, local: true) do |form| %>
-  <% if perfi.errors.any? %>
+<%= form_with(model: perfil, local: true, class: 'form-group') do |form| %>
+  <% if perfil.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(perfi.errors.count, "error") %> prohibited this perfi from being saved:</h2>
+      <h2><%= pluralize(perfil.errors.count, "error") %> prohibited this perfil from being saved:</h2>
 
       <ul>
-      <% perfi.errors.full_messages.each do |message| %>
+      <% perfil.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :nome %>
-    <%= form.text_field :nome %>
+    <%= form.text_field :nome, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :descricao %>
-    <%= form.text_area :descricao %>
+    <%= form.text_area :descricao,class: 'form-control' %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row">
+    
+    <div class="col-md-12">
+    <h3>Permissões</h3>
+    <hr>
+    </div>
+    
+      <% @permissoes.uniq{|u| u[:modulo]}.each do |modulo|%>
+      <div class="col-md-6">
+        <h5><%=modulo[:modulo]%></h5>
+        <% @permissoes.select{|s| s[:modulo] == modulo[:modulo]}.each do |permissao|%>
+          
+          
+          
+          <div class="custom-control custom-checkbox">
+            <%if perfil.permissao.map{|m| m[:id]}.include?(permissao[:id]) %>
+              <input name='permissoes[]' type="checkbox" class="custom-control-input" id="<%= permissao[:id]%>" value="<%= permissao[:id]%>" checked>
+            <%else%>
+              <input name='permissoes[]' type="checkbox" class="custom-control-input" id="<%= permissao[:id]%>" value="<%= permissao[:id]%>" >
+            <% end%>
+            <label class="custom-control-label" for="<%= permissao[:id]%>"><%=  permissao[:descricao]%></label>
+          </div>
+        <% end %>
+        </div>
+      <% end %>
+  </div>
+  <div class="row" style="margin-top:20px">
+  
+    <div class="actions form-group col-md-12">
+      <hr>
+      <%= form.submit 'CONFIRMAR',:class => 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>

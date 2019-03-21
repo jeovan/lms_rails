@@ -11,6 +11,29 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require  jquery
 //= require activestorage
-//= require turbolinks
-//= require_tree .
+//= require bootstrap
+//= require_self
+
+$(document).ready(function () {
+  $('.btn-delete').on('click',function (e) {
+    e.preventDefault();
+    Swal.fire({
+      title: '<strong>você tem certeza?</strong>',
+      type: 'warning',
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:
+        'REMOVER',
+      cancelButtonText:
+        'CANCELAR',
+    }).then((result) => {
+      if (result.value) {
+        $('#form_delete').attr('action', $(this).attr('href'))
+        $('#form_delete').submit();
+      }
+    })
+  })
+})

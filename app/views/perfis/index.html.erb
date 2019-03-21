@@ -2,28 +2,40 @@
 
 <h1>Perfis</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Nome</th>
       <th>Descricao</th>
-      <th colspan="3"></th>
+      <th ></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @perfis.each do |perfi| %>
+    <% @perfis.each do |perfil| %>
       <tr>
-        <td><%= perfi.nome %></td>
-        <td><%= perfi.descricao %></td>
-        <td><%= link_to 'Show', perfi %></td>
-        <td><%= link_to 'Edit', edit_perfi_path(perfi) %></td>
-        <td><%= link_to 'Destroy', perfi, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= perfil.nome %></td>
+        <td><%= perfil.descricao %></td>
+        <td><%= link_to( perfil, class:"btn btn-info btn-icon align-middle" )do %>
+          <i class="material-icons ">visibility</i>
+        <% end %>
+        <%= link_to(edit_perfil_path(perfil), class:"btn btn-warning  btn-icon") do %>
+          <i class="material-icons">create</i>
+        <% end %>
+        <%= link_to(perfil, class:"btn-delete btn btn-danger  btn-icon") do %>
+         <i class="material-icons">delete</i>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Perfi', new_perfi_path %>
+<form id="form_delete" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :_method,'delete' %>
+</form>
+<%= link_to(new_perfil_path, class:"btn btn-success  btn-icon") do %>
+<i class="material-icons">add</i>
+<% end %>

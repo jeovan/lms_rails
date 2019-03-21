@@ -17,4 +17,10 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural 'perfil', 'perfis'
   inflect.plural 'permissao', 'permissoes'
   inflect.plural 'perfil_permissao', 'perfis_permissoes'
+
+  inflect.singular  'usuarios', 'usuario'
+  inflect.singular  'pessoas', 'pessoa'
+  inflect.singular  'perfis', 'perfil'
+  inflect.singular  'permissoes', 'permissao'
+  inflect.singular  'perfis_permissoes', 'perfil_permissao'
 end
