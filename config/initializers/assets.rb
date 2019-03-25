@@ -13,3 +13,16 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 # Rails.application.config.assets.precompile += %w( swall.js )
+# Rails.application.config.assets.precompile += %w(perfis.scss perfis.js)
+# puts Rails.application.config.assets.precompile.inspect 
+Rails.application.config.assets.precompile = []
+Dir[Rails.root.join("app", "assets", "**", "*.*")].each do |file|
+  ext = file.split('/').last.split('.').last
+  Rails.application.config.assets.precompile << file if %w(scss js css).include?(ext)
+  
+end
+# Rails.application.config.assets.precompile += %w(*.css *.js *.scss)
+Rails.application.config.assets.precompile += %w(*.svg *.eot *.woff *.ttf)
+
+# puts Rails.application.config.assets.precompile.inspect 
+# config.assets.precompile = 

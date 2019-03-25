@@ -1,15 +1,15 @@
 <%= form_with(model: usuario, local: true) do |form| %>
-  <% if usuario.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
+  <div class="form-group">
+    <%= form.label 'E-mail' %>
+    <%= form.text_field :email, class: 'form-control ' %>
+    <div class="invalid-feedback"></div>
+  </div>
 
-      <ul>
-      <% usuario.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="form-group">
+    <%= form.label 'Perfil' %>
+    <%= form.text_field :perfil.nome, class: 'form-control ' %>
+    <div class="invalid-feedback"></div>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

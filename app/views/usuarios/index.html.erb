@@ -2,19 +2,30 @@
 
 <h1>Usuarios</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>E-mail</th>
+      <th>Perfil</th>
+      <th ></th>
     </tr>
   </thead>
 
   <tbody>
     <% @usuarios.each do |usuario| %>
       <tr>
-        <td><%= link_to 'Show', usuario %></td>
-        <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
-        <td><%= link_to 'Destroy', usuario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= usuario.email %></td>
+        <td><%= usuario.perfil.nome %></td>
+        <td><%= link_to( usuario, class:"btn btn-info btn-icon align-middle" )do %>
+          <i class="material-icons ">visibility</i>
+        <% end %>
+        <%= link_to(edit_usuario_path(usuario), class:"btn btn-warning  btn-icon") do %>
+          <i class="material-icons">create</i>
+        <% end %>
+        <%= link_to(usuario, class:"btn-delete btn btn-danger  btn-icon") do %>
+         <i class="material-icons">delete</i>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +33,10 @@
 
 <br>
 
-<%= link_to 'New Usuario', new_usuario_path %>
+<form id="form_delete" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :_method,'delete' %>
+</form>
+<%= link_to(new_usuario_path, class:"btn btn-success  btn-icon") do %>
+<i class="material-icons">add</i>
+<% end %>

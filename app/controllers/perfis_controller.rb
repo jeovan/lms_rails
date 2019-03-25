@@ -26,15 +26,14 @@ class PerfisController < ApplicationController
   # POST /perfis.json
   def create
     @perfil = Perfil.new(perfil_params)
-    @perfil.permissao = Permissao.find(params[:permissoes])
+    @perfil.permissao = Permissao.find(params[:permissoes]) unless params[:permissoes].blank?
 
     respond_to do |format|
       if @perfil.save
         format.html { redirect_to @perfil, notice: 'Perfil was successfully created.' }
         format.json { render :show, status: :created, location: @perfil }
       else
-        format.html { render :new }
-        format.json { render json: @perfil.errors, status: :unprocessable_entity }
+        format.json {render :json => { :errors => @perfil.errors }, :status => 422 }
       end
     end
   end

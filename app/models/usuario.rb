@@ -1,9 +1,15 @@
 class Usuario < ApplicationRecord
-  belongs_to :perfil
-  after_initialize :set_defaults, unless: :persisted?
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  before_validation   :set_default_role
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  def set_defaults
-    self.perfil_id  ||= 1
+  belongs_to :perfil
+
+
+  def set_default_role
+    puts '-------------'
+    self.perfil ||= Perfil.all.first
   end
+
 end
