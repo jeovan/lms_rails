@@ -17,13 +17,13 @@
         <td><%= usuario.email %></td>
         <td><%= usuario.perfil.nome %></td>
         <td><%= link_to( usuario, class:"btn btn-info btn-icon align-middle" )do %>
-          <i class="material-icons ">visibility</i>
+          <span data-feather="eye"></span>
         <% end %>
         <%= link_to(edit_usuario_path(usuario), class:"btn btn-warning  btn-icon") do %>
-          <i class="material-icons">create</i>
+          <span data-feather="edit"></span>
         <% end %>
         <%= link_to(usuario, class:"btn-delete btn btn-danger  btn-icon") do %>
-         <i class="material-icons">delete</i>
+         <span data-feather="trash"></span>
         <% end %>
         </td>
       </tr>
@@ -38,5 +38,5 @@
   <%= hidden_field_tag :_method,'delete' %>
 </form>
 <%= link_to(new_usuario_path, class:"btn btn-success  btn-icon") do %>
-<i class="material-icons">add</i>
+  <span data-feather="plus"></span>
 <% end %>

@@ -1,4 +1,19 @@
-<p id="notice"><%= notice %></p>
+<%= form_with(model: @usuario, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label 'Nome' %>
+    <%= form.text_field :nome, class: 'form-control ' %>
+    <div class="invalid-feedback"></div>
+  </div>
 
-<%= link_to 'Edit', edit_usuario_path(@usuario) %> |
-<%= link_to 'Back', usuarios_path %>
+  <div class="form-group">
+    <%= form.label 'E-mail' %>
+    <%= form.text_field :email, class: 'form-control ' %>
+    <div class="invalid-feedback"></div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Perfil' %>
+    <%= form.text_field :perfil, class: 'form-control ' %>
+    <div class="invalid-feedback"></div>
+  </div>
+<% end %>
